@@ -15,6 +15,8 @@ describe("Header Component", () => {
   });
 
   it("should render without errors", () => {
+    // const componenet = shallow(<Header />)
+    // const wrapper = component.find(`[data-test='headerComponent']`)
     // console.log(component.debug());
     const wrapper = findByTestAttribute(component, "headerComponent");
     expect(wrapper.length).toBe(1);
