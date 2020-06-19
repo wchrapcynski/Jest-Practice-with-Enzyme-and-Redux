@@ -7,14 +7,28 @@ import Headline from "./components/headline/headline";
 import SharedButton from "./components/button/button";
 import ListItem from "./components/listItem/listItem";
 
+const inititalState = {
+  hideButton: false,
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
+    this.state = { ...inititalState };
     this.fetch = this.fetch.bind(this);
   }
 
   fetch() {
     this.props.fetchPosts();
+    this.hideButton();
+  }
+
+  hideButton = () => {
+    this.setState({ hideButton: !this.state.hideButton });
+  };
+
+  exampleMethod_returnsAValue(number) {
+    return number += 1;
   }
 
   render() {
@@ -31,7 +45,7 @@ class App extends Component {
             header="Posts"
             description="Click the button to render posts"
           />
-          <SharedButton {...configButton} />
+          {this.state.hideButton === false && <SharedButton {...configButton} />}
           {posts.length > 0 && (
             <div>
               {posts.map((post, index) => {
